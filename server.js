@@ -31,7 +31,7 @@ app.listen(PORT, () => {
 });
 
 // 每天午夜執行刪除過期球局的任務
-cron.schedule('0 0 * * *', async () => {
+cron.schedule('47 4 * * *', async () => {
   try {
     const now = new Date();
     const result = await Game.deleteMany({ date: { $lt: now } }); // 刪除日期早於當前時間的球局
