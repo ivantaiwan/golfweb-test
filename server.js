@@ -9,7 +9,10 @@ dotenv.config(); // 載入環境變數
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://golf-frontend.onrender.com' // 替換為你前端的實際域名
+  //credentials: true, // 如果需要處理身份驗證或cookie
+}));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -24,7 +24,7 @@ const CreateGame = () => {
     e.preventDefault();
     try {
       console.log('Form data:', formData); // 打印表單數據
-      await axios.post('/api/games/create', formData);
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/games/create`, formData);
       alert('球局創建成功');
       navigate('/'); // 創建成功後跳轉到 Home 頁面
     } catch (error) {

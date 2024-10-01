@@ -18,7 +18,7 @@ const EditGame = () => {
     // 獲取目前的球局資料
     const fetchGame = async () => {
       try {
-        const response = await axios.get(`/api/games/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/games/${id}`);
         setFormData({
           date: response.data.date.substring(0, 10), // 顯示為YYYY-MM-DD
           time: response.data.time,
@@ -43,7 +43,7 @@ const EditGame = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/games/${id}`, formData);
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/games/${id}`, formData);
       alert('球局已更新');
       navigate('/'); // 更新完成後跳轉到主頁
     } catch (error) {
@@ -54,7 +54,7 @@ const EditGame = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/games/${id}`);
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/games/${id}`);
       alert('球局已刪除');
       navigate('/'); // 刪除後返回主頁
     } catch (error) {
