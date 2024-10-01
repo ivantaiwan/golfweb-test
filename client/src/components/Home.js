@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await axios.get(`https://golf-backend.onrender.com/api/games`, { headers: { 'Cache-Control': 'no-cache' } });
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/games`, { headers: { 'Cache-Control': 'no-cache' } });
         console.log('獲取到的球局資料:', response.data); // 確認獲取到的數據
         setGames(response.data);
       } catch (error) {
