@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';  // 引入 Link 用來導航
 import axios from 'axios';
+import './Home.css';
 
 const Home = () => {
   const [games, setGames] = useState([]);
@@ -20,7 +21,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="home-container">
       <h1>所有球局</h1>
       <Link to="/create">
         <button>創建球局</button>  {/* 導向到 /create 頁面 */}
