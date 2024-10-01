@@ -1,5 +1,5 @@
 .home-container {
-    background-image: url('https://github.com/ivantaiwan/golfweb-test/blob/master/golf_course.jpg');
+    background-image: url('https://github.com/ivantaiwan/golfweb-test/blob/master/golf_course.jpg?raw=true');
     background-size: cover;  /* 讓圖片覆蓋整個頁面 */
     background-position: center;  /* 讓圖片居中 */
     height: 100vh;  /* 設置全屏高度 */
@@ -7,6 +7,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;  /* 字體顏色 */
+    color: black;  /* 字體顏色 */
   }
   
