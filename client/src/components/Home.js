@@ -32,8 +32,8 @@ const Home = () => {
         <ul>
           {games.map((game) => (
             <li key={game._id}>
-              <strong>日期:</strong> {new Date(game.date).toLocaleDateString()} <br />
-              <strong>時間:</strong> {game.time} <br />
+              <strong>日期:</strong> {new Date(game.date).toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' })} <br />
+              <strong>時間:</strong> {new Date(game.time).toLocaleTimeString('zh-TW', { hour12: false })} <br />
               <strong>球場:</strong> {game.course} <br />
               <strong>球資:</strong> {game.prices} <br />
               <strong>備註:</strong> {game.remarks || '無'} <br />
