@@ -28,7 +28,7 @@ const Home = () => {
       </Link>
 
       {games.length === 0 ? (
-        <p>目前沒有球局</p>
+        <p>球局資料庫串連中...</p>
       ) : (
         <ul>
           {games.map((game) => (
