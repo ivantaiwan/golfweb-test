@@ -42,6 +42,23 @@ const EditGame = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 獲取當前日期和時間
+    const currentDate = new Date();
+    const selectedDate = new Date(`${formData.date}T${formData.time}`);
+
+    // 防止選擇過去的時間
+    if (selectedDate <= currentDate) {
+      alert('不能選擇過去的日期和時間，請選擇未來的時間');
+      return;
+    }
+
+    // 確認是否要保存修改
+    const confirmEdit = window.confirm('你確定要保存這些修改嗎？');
+    if (!confirmEdit) {
+      return;
+    }
+
     try {
       await axios.put(`${process.env.REACT_APP_API_URL}/api/games/${id}`, formData);
       alert('球局已更新');
@@ -53,6 +70,12 @@ const EditGame = () => {
   };
 
   const handleDelete = async () => {
+    // 確認是否要刪除
+    const confirmDelete = window.confirm('你確定要刪除這個球局嗎？這個操作無法撤銷。');
+    if (!confirmDelete) {
+      return;
+    }
+
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/api/games/${id}`);
       alert('球局已刪除');
@@ -84,7 +107,7 @@ const EditGame = () => {
         <div>
           <label>時間：</label>
           <input
-            type="text"
+            type="time"
             name="time"
             value={formData.time}
             onChange={handleChange}

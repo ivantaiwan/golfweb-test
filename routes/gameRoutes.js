@@ -26,6 +26,13 @@ router.post('/create', async (req, res) => {
       return res.status(400).json({ message: '所有欄位都是必填的' });
     }
 
+    //確認為當日以後的時間
+    const selectedDateTime = new Date(`${date}T${time}`);
+    const currentDateTime = new Date();
+    if (selectedDateTime <= currentDateTime) {
+      return res.status(400).json({ message: '日期和時間必須是未來的時間' });
+    }
+
     const newGame = new Game({
       date,
       time,
@@ -47,6 +54,14 @@ router.post('/create', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const { date, time, course, prices, remarks } = req.body;
+
+    // 檢查日期和時間是否為未來
+    const selectedDateTime = new Date(`${date}T${time}`);
+    const currentDateTime = new Date();
+    if (selectedDateTime <= currentDateTime) {
+      return res.status(400).json({ message: '日期和時間必須是未來的時間' });
+    }
+
     const updatedGame = await Game.findByIdAndUpdate(
       req.params.id,
       { date, time, course, prices, remarks },
