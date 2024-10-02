@@ -4,7 +4,10 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const games = await Game.find().sort({date: 1}); // 獲取所有球局
+
+    const currentDate = new Date(); //獲取當前日期
+
+    const games = await Game.find({ date: { $gte: currentDate } }).sort({ date: 1 }); // 獲取所有球局
     res.json(games);
   } catch (error) {
     console.error('Error fetching games:', error);

@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv'); // 引入 dotenv
 const gameRoutes = require('./routes/gameRoutes');
 
-const cron = require('node-cron');
-const Game = require('./models/Game'); // 引入 Game 模型
-
 dotenv.config(); // 載入環境變數
 
 const app = express();
@@ -28,15 +25,4 @@ app.use('/api/games', gameRoutes);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
-
-// 每天午夜執行刪除過期球局的任務
-cron.schedule('0 16 * * *', async () => {
-  try {
-    const now = new Date();
-    const result = await Game.deleteMany({ date: { $lt: now } }); // 刪除日期早於當前時間的球局
-    console.log(`刪除了 ${result.deletedCount} 條過期球局`);
-  } catch (error) {
-    console.error('刪除過期球局失敗:', error);
-  }
 });
